@@ -9,10 +9,9 @@ class CategorySpider(scrapy.Spider):
     name = 'main_spider'
 
     def start_requests(self):
-        start_url = 'https://order-nn.ru/kmo/catalog/5999/?PAGEN_1=1' #, 'https://order-nn.ru/kmo/catalog/9460/?PAGEN_1=1' #'https://order-nn.ru/kmo/catalog/5974/?PAGEN_1=1' #, 'https://order-nn.ru/kmo/catalog/9460/?PAGEN_1=1',
-                      #'https://order-nn.ru/kmo/catalog/5999/?PAGEN_1=1']
-        #for url in start_urls:
-        yield SeleniumRequest(url=start_url, callback=self.parse)
+        start_urls = ['https://order-nn.ru/kmo/catalog/5974/?PAGEN_1=1', 'https://order-nn.ru/kmo/catalog/9460/?PAGEN_1=1', 'https://order-nn.ru/kmo/catalog/5999/?PAGEN_1=1']
+        for url in start_urls:
+            yield SeleniumRequest(url=url, callback=self.parse)
 
     def parse(self, response):
         pagination = response.xpath(
